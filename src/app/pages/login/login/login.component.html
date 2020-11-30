@@ -1,0 +1,69 @@
+<section class="login p-fixed d-flex text-center bg-planillas">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="login-card card-block auth-body mr-auto ml-auto">
+          <form class="md-float-material my-5" [formGroup]="loginForm" (ngSubmit)="ObtenerCredencial()">
+            <div class="auth-box">
+              <div>
+                <div class="row m-b-20">
+                  <div class="col-md-12">
+                    <img src="assets/images/auth/logo_unsa.png" class="rounded" alt="logo.png" height="95">
+                  </div>
+                </div>
+                <hr />
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
+                  <span class="md-line"></span>
+                </div>
+                <div class="input-group">
+                  <input type="password" class="form-control" placeholder="Contraseña" formControlName="contraseña">
+                  <span class="md-line"></span>
+                </div>
+                <div class="row m-t-25 text-left">
+                    <div class="col-12">
+                                          <!--
+                      <div class="checkbox-fade fade-in-primary d-">
+                        <label>
+                          <input type="checkbox" value="">
+                          <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span>
+                          <span class="text-inverse">Recordar Contraseña</span>
+                        </label>
+                                          </div>
+
+                      <div class="forgot-phone text-right f-right">
+                        <a [routerLink]="['forgot']" class="text-right f-w-600 text-inverse">
+                          ¿Olvidaste tu Contraseña?</a>
+                                          </div>
+                                          -->
+                    </div>
+                  </div>
+                  <div class="row m-t-30">
+                    <div class="col-md-12">
+                      <!-- <a [routerLink]="['/admin']"
+                      class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Iniciar Sesión
+                    </a> -->
+                      <button type="submit"
+                        class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
+                        [disabled]="!loginForm.valid">Iniciar Sesión</button>
+                    </div>
+                  </div>
+                  <div *ngIf="badCredentials" class="text-danger font-weight-bold small">Tu nombre de usuario o
+                    tu contraseña son Incorrectos.</div>
+                </div>
+                <hr />
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
