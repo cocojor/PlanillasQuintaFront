@@ -44,30 +44,30 @@ export class Menu {
 }
 
 export class SeguridadMenu extends Auditoria {
-    IdPermiso?: number;
-    IdParent?: number;
-    Tipo: number;
-    IconMenu: string;
-    Descripcion?: string;
-    Nivel?: number;
-    Ruta: string;
-    Hijos: Hijos[] = [];
-    SubMenu?: string;
+    idPermiso?: number;
+    idParent?: number;
+    tipo: number;
+    iconMenu: string;
+    descripcion?: string;
+    nivel?: number;
+    ruta: string;
+    hijos: Hijos[] = [];
+    subMenu?: string;
     constructor() {
         super();
     }
 }
 export class Hijos extends Auditoria {
-    IdPermiso?: number;
-    IdParent?: number;
-    Tipo: number;
-    IconMenu: string;
-    Descripcion?: string;
-    Nivel?: number;
-    Ruta: string;
-    SubMenu?: string;
-    Hijos?: Hijos[] = [];
-    Orden = 0;
+    idPermiso?: number;
+    idParent?: number;
+    tipo: number;
+    iconMenu: string;
+    descripcion?: string;
+    nivel?: number;
+    ruta: string;
+    subMenu?: string;
+    hijos?: Hijos[] = [];
+    orden = 0;
 }
 
 
@@ -304,39 +304,39 @@ export class MenuItems {
         _menu.forEach(element => {
             const menu = new Menu();
             const mainMenuItemsList = new Array<MainMenuItems>();
-            element.Hijos.forEach(hijos => {
+            element.hijos.forEach(hijos => {
                 const mainMenuItems = new MainMenuItems();
                 const childrenItemsList = new Array<ChildrenItems>();
                 let counter = 0;
-                hijos.Hijos.forEach(_hijos => {
-                    if (_hijos.Tipo === 1) {
+                hijos.hijos.forEach(_hijos => {
+                    if (_hijos.tipo === 1) {
                         const childrenItems = new ChildrenItems;
-                        childrenItems.state = _hijos.Ruta;
-                        childrenItems.name = _hijos.Descripcion;
-                        childrenItems.id = _hijos.IdPermiso;
+                        childrenItems.state = _hijos.ruta;
+                        childrenItems.name = _hijos.descripcion;
+                        childrenItems.id = _hijos.idPermiso;
                         childrenItemsList.push(childrenItems);
                         mainMenuItems.children = childrenItemsList;
                         counter++;
                     }
                 });
-                mainMenuItems.state = hijos.Ruta;
-                mainMenuItems.name = hijos.Descripcion;
+                mainMenuItems.state = hijos.ruta;
+                mainMenuItems.name = hijos.descripcion;
                 if (counter === 0) {
                     mainMenuItems.type = 'link';
-                    mainMenuItems.main_state = element.Ruta;
+                    mainMenuItems.main_state = element.ruta;
                 } else {
                     mainMenuItems.type = 'sub';
-                    mainMenuItems.main_state = element.Ruta;
+                    mainMenuItems.main_state = element.ruta;
                 }
 
-                mainMenuItems.icon = hijos.IconMenu;
-                mainMenuItems.id = hijos.IdPermiso;
-                mainMenuItems.orden = hijos.Orden;
+                mainMenuItems.icon = hijos.iconMenu;
+                mainMenuItems.id = hijos.idPermiso;
+                mainMenuItems.orden = hijos.orden;
                 mainMenuItemsList.push(mainMenuItems);
                 menu.main = mainMenuItemsList;
             });
-            menu.label = element.Descripcion;
-            menu.id = element.IdPermiso;
+            menu.label = element.descripcion;
+            menu.id = element.idPermiso;
             menuList.push(menu);
         });
         return menuList;

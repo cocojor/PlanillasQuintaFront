@@ -1,5 +1,5 @@
 import { catchError, tap } from 'rxjs/operators';
-import { PayLoadToken, Token } from './../models/planillaquinta/token';
+import { PayLoadToken, Scopes, Token } from './../models/planillaquinta/token';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Rutas } from './../commos/Rutas';
@@ -12,6 +12,7 @@ import * as decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class SeguridadService {
+
   private rutas = new Rutas;
 
   private httpHeaders = new HttpHeaders({
@@ -32,8 +33,13 @@ export class SeguridadService {
     return false;
   }
   ObtenerIdPayload() {
-    const payLoad: PayLoadToken = decode(localStorage.getItem('AccesToken'));
+    let payLoad = new PayLoadToken();
+    const datos =  decode(localStorage.getItem('AccesToken'));
+    payLoad = datos;
+    payLoad.scopes = new Scopes();
     payLoad.scopes.RolUsuario = localStorage.getItem('RolUsuario');
+    payLoad.scopes.IdUsuario = datos.nameid;
+    payLoad.scopes.Usuario = datos.unique_name;
     return payLoad;
   }
 
@@ -59,5 +65,23 @@ export class SeguridadService {
   private handleError(error: Response) {
     const mensaje = `Error status code ${error.status} en ${error.url}`;
     return throwError(mensaje);
+  }
+
+  public  logOut() {
+    localStorage.removeItem('AccesToken');
+    localStorage.removeItem('ExpiresInToken');
+    localStorage.removeItem('TipoToken');
+    localStorage.removeItem('RolUsuario');
+    localStorage.removeItem('IdentificadorInforme');
+    localStorage.clear();
+    localStorage.removeItem('AccesToken');
+    localStorage.removeItem('ExpiresInToken');
+    localStorage.removeItem('TipoToken');
+    localStorage.removeItem('RolUsuario');
+    localStorage.removeItem('IdentificadorInforme');
+    localStorage.clear();
+
+    localStorage.setItem('LogOut', Date.now().toString());
+    this.router.navigate(['/auth/login']);
   }
 }

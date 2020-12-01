@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { PrincipalComponent } from './layout/principal/principal.component';
 import { UserIdleModule } from 'angular-user-idle';
 import { AuthComponent } from './layout/auth/auth.component';
+import { RenderService } from './services/render.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthComponent } from './layout/auth/auth.component';
   ],
   providers: [
     MenuItems,
+    RenderService,
     LoaderService,
     {
       provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true

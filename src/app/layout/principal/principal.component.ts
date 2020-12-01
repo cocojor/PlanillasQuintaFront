@@ -1,3 +1,5 @@
+import { RenderService } from './../../services/render.service';
+import { SeguridadService } from 'src/app/services/seguridad.service';
 import { animate, AUTO_STYLE, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Menu, MenuItems } from './../../shared/menu-items/menu-items';
@@ -67,66 +69,68 @@ import { Menu, MenuItems } from './../../shared/menu-items/menu-items';
 export class PrincipalComponent implements OnInit {
 
   public navType: string;
-    public themeLayout: string;
-    public verticalPlacement: string;
-    public verticalLayout: string;
-    public pcodedDeviceType: string;
-    public verticalNavType: string;
-    public verticalEffect: string;
-    public vnavigationView: string;
-    public freamType: string;
-    public sidebarImg: string;
-    public sidebarImgType: string;
-    public layoutType: string;
+  public themeLayout: string;
+  public verticalPlacement: string;
+  public verticalLayout: string;
+  public pcodedDeviceType: string;
+  public verticalNavType: string;
+  public verticalEffect: string;
+  public vnavigationView: string;
+  public freamType: string;
+  public sidebarImg: string;
+  public sidebarImgType: string;
+  public layoutType: string;
 
-    public headerTheme: string;
-    public pcodedHeaderPosition: string;
+  public headerTheme: string;
+  public pcodedHeaderPosition: string;
 
-    public liveNotification: string;
-    public liveNotificationClass: string;
+  public liveNotification: string;
+  public liveNotificationClass: string;
 
-    public profileNotification: string;
-    public profileNotificationClass: string;
+  public profileNotification: string;
+  public profileNotificationClass: string;
 
-    public chatSlideInOut: string;
-    public innerChatSlideInOut: string;
+  public chatSlideInOut: string;
+  public innerChatSlideInOut: string;
 
-    public searchWidth: number;
-    public searchWidthString: string;
+  public searchWidth: number;
+  public searchWidthString: string;
 
-    public navRight: string;
-    public windowWidth: number;
-    public chatTopPosition: string;
+  public navRight: string;
+  public windowWidth: number;
+  public chatTopPosition: string;
 
-    public toggleOn: boolean;
-    public navBarTheme: string;
-    public activeItemTheme: string;
-    public pcodedSidebarPosition: string;
+  public toggleOn: boolean;
+  public navBarTheme: string;
+  public activeItemTheme: string;
+  public pcodedSidebarPosition: string;
 
-    public menuTitleTheme: string;
-    public dropDownIcon: string;
-    public subItemIcon: string;
+  public menuTitleTheme: string;
+  public dropDownIcon: string;
+  public subItemIcon: string;
 
-    public configOpenRightBar: string;
-    public displayBoxLayout: string;
-    public isVerticalLayoutChecked: boolean;
-    public isSidebarChecked: boolean;
-    public isHeaderChecked: boolean;
-    public headerFixedMargin: string;
-    public sidebarFixedHeight: string;
-    public itemBorderStyle: string;
-    public subItemBorder: boolean;
-    public itemBorder: boolean;
+  public configOpenRightBar: string;
+  public displayBoxLayout: string;
+  public isVerticalLayoutChecked: boolean;
+  public isSidebarChecked: boolean;
+  public isHeaderChecked: boolean;
+  public headerFixedMargin: string;
+  public sidebarFixedHeight: string;
+  public itemBorderStyle: string;
+  public subItemBorder: boolean;
+  public itemBorder: boolean;
 
-    public config: any;
+  public config: any;
 
-    public usuario: string;
-    public rolUsuario: string;
-    // public roles = Roles;
-    public mensajeError: string;
-    public nuevoMenu2: Menu[];
+  public usuario: string;
+  public rolUsuario: string;
+  // public roles = Roles;
+  public mensajeError: string;
+  public nuevoMenu2: Menu[];
 
-  constructor(public menuItems: MenuItems) {
+  constructor(public menuItems: MenuItems,
+              private seguridadService: SeguridadService,
+              private renderService: RenderService) {
     this.navType = 'st2';
     this.themeLayout = 'vertical';
     this.verticalPlacement = 'left';
@@ -179,6 +183,11 @@ export class PrincipalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerMenu();
+    const scopes = this.seguridadService.ObtenerIdPayload().scopes;
+
+    this.usuario = scopes.Usuario.toUpperCase();
+    this.rolUsuario = scopes.RolUsuario;
   }
 
    onResize(event): void {
@@ -197,7 +206,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
- setHeaderAttributes(windowWidth): void {
+ setHeaderAttributes(windowWidth) {
       if (windowWidth < 992) {
           this.navRight = 'nav-off';
       } else {
@@ -205,7 +214,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
-  setMenuAttributes(windowWidth): void {
+  setMenuAttributes(windowWidth) {
       if (windowWidth >= 768 && windowWidth <= 1024) {
           this.pcodedDeviceType = 'tablet';
           this.verticalNavType = 'offcanvas';
@@ -356,11 +365,24 @@ export class PrincipalComponent implements OnInit {
   }
 
   logOut(): void {
-
+    this.seguridadService.logOut();
   }
 
   obtenerMenu(): void {
     let constante = new Array<any>();
-    this.menuItems.getMenus()
+    this.menuItems.getMenus().subscribe(
+      rest => {
+        constante = rest;
+        this.nuevoMenu2 = this.menuItems.createMenu(constante);
+      },
+      error => {
+        this.mensajeError = <any>error;
+      }
+    );
+  }
+
+  mostrarElemento(idControl: string): boolean {
+    const result = this.renderService.matchControl(idControl);
+    return result;
   }
 }
