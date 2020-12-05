@@ -1,46 +1,44 @@
-import { Rutas } from './../../commos/Rutas';
 import { Auditoria } from './../../models/planillaquinta/Auditoria';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { SeguridadService } from 'src/app/services/seguridad.service';
-import { catchError, tap } from 'rxjs/operators';
-// import { Auditoria } from 'src/app/models/capacitaciones/Auditoria';
-
+import { tap, catchError } from 'rxjs/operators';
+import { Rutas } from 'src/app/commons/Rutas';
 
 export class BadgeItem {
-    public type: string;
-    public value: string;
+    type: string;
+    value: string;
 }
 
 export class ChildrenItems {
-    public id?: number;
-    public state: string;
-    public target?: boolean;
-    public name: string;
-    public type?: string;
-    public children?: ChildrenItems[];
+    id?: number;
+    state: string;
+    target?: boolean;
+    name: string;
+    type?: string;
+    children?: ChildrenItems[];
 }
 
 export class MainMenuItems {
-    public id?: number;
-    public state: string;
-    public short_label?: string;
-    public main_state?: string;
-    public target?: boolean;
-    public name: string;
-    public type: string;
-    public icon: string;
-    public badge?: BadgeItem[];
-    public children?: ChildrenItems[];
-    public orden = 0;
+    id?: number;
+    state: string;
+    short_label?: string;
+    main_state?: string;
+    target?: boolean;
+    name: string;
+    type: string;
+    icon: string;
+    badge?: BadgeItem[];
+    children?: ChildrenItems[];
+    orden = 0;
     public external: string;
 }
 
 export class Menu {
-    public id?: number;
-    public label: string;
-    public main: MainMenuItems[];
+    id?: number;
+    label: string;
+    main: MainMenuItems[];
 }
 
 export class SeguridadMenu extends Auditoria {
@@ -266,27 +264,26 @@ export class Hijos extends Auditoria {
 // ];
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class MenuItems {
 
+    private idEmpresa: number;
     private ruta = new Rutas;
     public datosUsuario;
-    public mensajeError: string;
+    mensajeError: string;
 
-    public nuevoMenu2: Menu[];
+    nuevoMenu2: Menu[];
 
     constructor(public _http: HttpClient,
-         private seguridadService: SeguridadService
-        ) {
-         //   this.idEmpresa = this.seguridadService.obtenerIdEmpresa();
+        private seguridadService: SeguridadService) {
     }
 
     public getMenus(): Observable<any> {
         this.datosUsuario = this.seguridadService.ObtenerIdPayload().scopes;
 
         let endpoint = this.ruta.RUTA_SERVER_SEGURIDAD + '/usuarios/' + this.datosUsuario.IdUsuario
-                                                          + '/permisos';
+                                                        + '/permisos';
 
         if (this.seguridadService.existeRol()) {
             endpoint += '?IdRol=' + this.seguridadService.ObtenerIdRolUsuario();
@@ -309,13 +306,13 @@ export class MenuItems {
                 const childrenItemsList = new Array<ChildrenItems>();
                 let counter = 0;
                 hijos.hijos.forEach(_hijos => {
-                      const childrenItems = new ChildrenItems;
-                      childrenItems.state = _hijos.ruta;
-                      childrenItems.name = _hijos.descripcion;
-                      childrenItems.id = _hijos.idPermiso;
-                      childrenItemsList.push(childrenItems);
-                      mainMenuItems.children = childrenItemsList;
-                      counter++;
+                    const childrenItems = new ChildrenItems;
+                    childrenItems.state = _hijos.ruta;
+                    childrenItems.name = _hijos.descripcion;
+                    childrenItems.id = _hijos.idPermiso;
+                    childrenItemsList.push(childrenItems);
+                    mainMenuItems.children = childrenItemsList;
+                    counter++;
                 });
                 mainMenuItems.state = hijos.ruta;
                 mainMenuItems.name = hijos.descripcion;

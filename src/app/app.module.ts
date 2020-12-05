@@ -1,47 +1,52 @@
-import { LoaderInterceptor } from './interceptors/loader.interceptor';
-import { LoaderService } from './services/loader.service';
-import { MenuItems } from './shared/menu-items/menu-items';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoaderComponent } from './shared/loader/loader.component';
-import { SharedModule } from './shared/shared.module';
+import { NgModule } from '@angular/core';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { PrincipalComponent } from './layout/principal/principal.component';
-import { UserIdleModule } from 'angular-user-idle';
+import { AdminComponent } from './layout/admin/admin.component';
 import { AuthComponent } from './layout/auth/auth.component';
-import { RenderService } from './services/render.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { MenuItems } from './shared/menu-items/menu-items';
+import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component';
+import { Urls } from './rutas/rutas';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import { LoaderComponent } from '../app/shared/loader/loader.component';
+import { LoaderService } from '../app/services/loader.service';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoaderInterceptor } from '../app/interceptors/loader.interceptor';
+import { UserIdleModule } from 'angular-user-idle';
+
+import { RenderService } from '../app/services/render.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PrincipalComponent,
-    LoaderComponent,
-    AuthComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    SharedModule,
-    FormsModule,
-    NgxPaginationModule,
-    HttpClientModule,
-    UserIdleModule
-  ],
-  providers: [
-    MenuItems,
-    RenderService,
-    LoaderService,
-    {
-      provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true
-    }
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        AdminComponent,
+        AuthComponent,
+        BreadcrumbsComponent,
+        LoaderComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        SharedModule,
+        FormsModule,
+        NgxPaginationModule,
+        HttpClientModule,
+        UserIdleModule.forRoot({idle: 300, timeout: 1, ping: 120})
+    ],
+    providers: [
+        MenuItems,
+        RenderService,
+        Urls,
+        LoaderService,
+        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

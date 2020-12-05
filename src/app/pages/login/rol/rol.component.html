@@ -1,3 +1,39 @@
-<p>
-  rol works!
-</p>
+<section class="login p-fixed d-flex text-center bg-gitoca">
+	<!-- Container-fluid starts -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<!-- Authentication card start -->
+				<div class="login-card card-block auth-body mr-auto ml-auto">
+                    <div class="auth-box">
+                        <div class="col-md-12">
+                            <img src="assets/images/auth/logo_unsa.png" class="rounded" alt="logo.png" height="95">
+                        </div>
+                        <div class="row m-b-20 m-t-10">
+                            <div class="col-md-12">
+                                <h3 class="text-left">Bienvenido {{ usuario }}!</h3>
+                                <p class="text-inverse text-left text-muted my-3">Seleccione un rol para continuar.</p>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="text-inverse b-b-default text-right">Regresar al <a
+                                    [routerLink]="['/auth/login']" class="link">Login</a></p>
+                            </div>
+                        </div>
+                        <div class="form-group text-left">
+                            <ng-select [items]="roles" bindLabel="Nombre" bindValue="Nombre"
+                                notFoundText="No se encontraron roles." [multiple]="false" [(ngModel)]="rolSeleccionado">
+                            </ng-select>
+                            <span class="md-line"></span>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary btn-md btn-block m-b-20"
+                                    (click)="continuar()">Continuar</button>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
