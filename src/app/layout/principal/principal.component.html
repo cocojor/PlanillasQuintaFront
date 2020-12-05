@@ -5,18 +5,19 @@
   [attr.sidebar-img]="sidebarImg" [attr.sidebar-img-type]="sidebarImgType" [attr.layout-type]="layoutType"
   (window:resize)="onResize($event)">
   <div class="pcoded-overlay-box"></div>
-
   <div class="pcoded-container navbar-wrapper">
+    <!--<nav class="navbar header-navbar pcoded-header" [attr.header-theme]="headerTheme"-->
 
     <nav class="navbar header-navbar pcoded-header bg-planillas" [attr.pcoded-header-position]="pcodedHeaderPosition">
-      <div class="navbar-wapper">
+      <div class="navbar-wrapper">
         <div class="navbar-logo">
           <a class="mobile-menu" id="mobile-collapse" href="javascript:" (click)="toggleOpened()"
             [exclude]="'#main_navbar'" (clickOutside)="onClickedOutsideSidebar($event)">
             <i class="ti-menu text-white"></i>
           </a>
-          <a [routerLink]="['/admin/quinta/cargar']">
-            <img class="img-fluid" src="assets/images/logos/unsa.png" width="15" height="15" alt="Theme_Logo" />
+          <a [routerLink]="['/admin/matriculas']">
+            <img class="img-fluid" src="assets\images\auth\logo_unsa.png" width="145" height="55"
+              alt="Theme-Logo" />
           </a>
           <a href="javascript:" class="mobile-options" (click)="toggleHeaderNavRight()">
             <i class="ti-more text-white"></i>
@@ -27,21 +28,17 @@
             <li>
               <div class="sidebar_toggle"><a href="javascript:;"><i class="ti-menu text-white"></i></a></div>
             </li>
-
           </ul>
           <ul [@mobileHeaderNavRight]="navRight" [ngClass]="navRight" class="nav-right">
             <li (clickOutside)="notificationOutsideClick('profile')" class="user-profile header-notification"
               [ngClass]="profileNotificationClass" (click)="toggleProfileNotification()">
               <a href="javascript:">
-                <!--
-                <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                -->
                 <span class="small text-lucida text-white">{{usuario}} ({{rolUsuario}})</span>
                 <i class="ti-angle-down text-white"></i>
               </a>
               <ul [@notificationBottom]="profileNotification" class="show-notification profile-notification">
                 <li>
-                  <a [routerLink]="'/operador/perfil'" class="link">
+                  <a [routerLink]="'/instructor/perfil'" class="link">
                     <i class="ti-user"></i> Mi Perfil
                   </a>
                 </li>
@@ -53,10 +50,10 @@
               </ul>
             </li>
           </ul>
+
         </div>
       </div>
     </nav>
-
     <div class="pcoded-main-container" [style.margin-top]="headerFixedMargin">
       <div class="pcoded-wrapper">
         <nav id="main_navbar" class="pcoded-navbar" (clickOutside)="onClickedOutsideSidebar($event)"

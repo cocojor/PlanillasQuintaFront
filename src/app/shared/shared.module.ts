@@ -11,7 +11,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CalendarModule } from 'angular-calendar';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { AutocompleteModule } from 'ng2-input-autocomplete';
 import { ToastyModule } from 'ng2-toasty';
@@ -28,6 +27,7 @@ import { ToggleFullScreenDirective } from './fullscreen/toggle-fullscreen.direct
 import { ModalAnimationComponent } from './modal-animation/modal-animation.component';
 import { ModalBasicComponent } from './modal-basic/modal-basic.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { MaterialModule } from './material.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -49,10 +49,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToastyModule.forRoot(),
     AutocompleteLibModule,
     AutocompleteModule.forRoot(),
-    Ng2AutoCompleteModule,
     Ng2CompleterModule,
     NgxChartsModule,
-    CKEditorModule
+    CKEditorModule,
+    MaterialModule
   ],
   exports: [
     NgbModule,
@@ -76,7 +76,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // OnlyDigitsDirective,
     // OnlyNumbersDirective,
     // AuditDirective,
-    ToastyModule
+    ToastyModule,
+    MaterialModule
 ],
 declarations: [
     ToggleFullScreenDirective,

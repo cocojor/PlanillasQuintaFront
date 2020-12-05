@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-      "gradient-able-v6.0.7-demo": {
+      "PlanillasQuintaFront": {
           "root": "",
           "sourceRoot": "src",
           "projectType": "application",
@@ -17,7 +17,7 @@
               "build": {
                   "builder": "@angular-devkit/build-angular:browser",
                   "options": {
-                      "outputPath": "dist/gradient-able-v6.0.7-demo",
+                      "outputPath": "dist/PlanillasQuintaFront",
                       "index": "src/index.html",
                       "main": "src/main.ts",
                       "polyfills": "src/polyfills.ts",
@@ -36,7 +36,7 @@
                           "src/assets/css/app.css",
                           "src/assets/css/toasty-style-bootstrap.css",
                           "src/assets/css/toasty-style-default.css",
-              "src/assets/css/toasty-style-material.css"
+                          "src/assets/css/toasty-style-material.css"
                       ],
                       "scripts": [
                           "node_modules/jquery/dist/jquery.min.js",
@@ -66,18 +66,18 @@
               "serve": {
                   "builder": "@angular-devkit/build-angular:dev-server",
                   "options": {
-                      "browserTarget": "gradient-able-v6.0.7-demo:build"
+                      "browserTarget": "PlanillasQuintaFront:build"
                   },
                   "configurations": {
                       "production": {
-                          "browserTarget": "gradient-able-v6.0.7-demo:build:production"
+                          "browserTarget": "PlanillasQuintaFront:build:production"
                       }
                   }
               },
               "extract-i18n": {
                   "builder": "@angular-devkit/build-angular:extract-i18n",
                   "options": {
-                      "browserTarget": "gradient-able-v6.0.7-demo:build"
+                      "browserTarget": "PlanillasQuintaFront:build"
                   }
               },
               "test": {
@@ -92,7 +92,7 @@
                           "node_modules/bootstrap/scss/bootstrap.scss",
                           "node_modules/font-awesome-scss/scss/font-awesome.scss",
                           "src/assets/icon/themify-icons/themify-icons.css",
-              "src/scss/style.scss"
+                          "src/scss/style.scss"
                       ],
                       "scripts": [],
                       "assets": [
@@ -115,7 +115,7 @@
               }
           }
       },
-      "gradient-able-v6.0.7-demo-e2e": {
+      "PlanillasQuintaFront-e2e": {
           "root": "e2e/",
           "projectType": "application",
           "architect": {
@@ -123,11 +123,11 @@
                   "builder": "@angular-devkit/build-angular:protractor",
                   "options": {
                       "protractorConfig": "e2e/protractor.conf.js",
-                      "devServerTarget": "gradient-able-v6.0.7-demo:serve"
+                      "devServerTarget": "PlanillasQuintaFront:serve"
                   },
                   "configurations": {
                       "production": {
-                          "devServerTarget": "gradient-able-v6.0.7-demo:serve:production"
+                          "devServerTarget": "PlanillasQuintaFront:serve:production"
                       }
                   }
               },
@@ -143,5 +143,5 @@
           }
       }
   },
-  "defaultProject": "gradient-able-v6.0.7-demo"
+  "defaultProject": "PlanillasQuintaFront"
 }

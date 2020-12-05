@@ -22,7 +22,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'Generar',
+    path: 'generar',
     component: GenerarComponent,
     data: {
       idPermisoPadre: 2,

@@ -128,58 +128,62 @@ export class PrincipalComponent implements OnInit {
   public mensajeError: string;
   public nuevoMenu2: Menu[];
 
+
+
+
+
   constructor(public menuItems: MenuItems,
               private seguridadService: SeguridadService,
               private renderService: RenderService) {
-    this.navType = 'st2';
-    this.themeLayout = 'vertical';
-    this.verticalPlacement = 'left';
-    this.verticalLayout = 'wide';
-    this.pcodedDeviceType = 'desktop';
-    this.verticalNavType = 'expanded';
-    this.verticalEffect = 'shrink';
-    this.vnavigationView = 'view1';
-    this.freamType = 'theme1';
-    this.sidebarImg = 'false';
-    this.sidebarImgType = 'img1';
-    this.layoutType = 'light';
 
-    this.headerTheme = 'themelight3';
-    this.pcodedHeaderPosition = 'fixed';
+                this.navType = 'st2';
+                this.themeLayout = 'vertical';
+                this.verticalPlacement = 'left';
+                this.verticalLayout = 'wide';
+                this.pcodedDeviceType = 'desktop';
+                this.verticalNavType = 'expanded';
+                this.verticalEffect = 'shrink';
+                this.vnavigationView = 'view1';
+                this.freamType = 'theme1';
+                this.sidebarImg = 'false';
+                this.sidebarImgType = 'img1';
+                this.layoutType = 'light';
 
-    this.liveNotification = 'an-off';
-    this.profileNotification = 'an-off';
+                this.headerTheme = 'themelight3';
+                this.pcodedHeaderPosition = 'fixed';
 
-    this.chatSlideInOut = 'out';
-    this.innerChatSlideInOut = 'out';
+                this.liveNotification = 'an-off';
+                this.profileNotification = 'an-off';
 
-    this.searchWidth = 0;
+                this.chatSlideInOut = 'out';
+                this.innerChatSlideInOut = 'out';
 
-    this.navRight = 'nav-on';
+                this.searchWidth = 0;
 
-    this.windowWidth = window.innerWidth;
-    this.setHeaderAttributes(this.windowWidth);
+                this.navRight = 'nav-on';
 
-    this.toggleOn = true;
-    this.navBarTheme = 'themelight1';
-    this.activeItemTheme = 'theme10';
-    this.pcodedSidebarPosition = 'fixed';
-    this.menuTitleTheme = 'theme1';
-    this.dropDownIcon = 'style3';
-    this.subItemIcon = 'style7';
+                this.windowWidth = window.innerWidth;
+                this.setHeaderAttributes(this.windowWidth);
 
-    this.displayBoxLayout = 'd-none';
-    this.isVerticalLayoutChecked = false;
-    this.isSidebarChecked = true;
-    this.isHeaderChecked = true;
-    this.headerFixedMargin = '56px';
-    this.sidebarFixedHeight = 'calc(100vh - 56px)';
-    this.itemBorderStyle = 'none';
-    this.subItemBorder = true;
-    this.itemBorder = true;
+                this.toggleOn = true;
+                this.navBarTheme = 'themelight1';
+                this.activeItemTheme = 'theme10';
+                this.pcodedSidebarPosition = 'fixed';
+                this.menuTitleTheme = 'theme1';
+                this.dropDownIcon = 'style3';
+                this.subItemIcon = 'style7';
 
-    this.setMenuAttributes(this.windowWidth);
-    this.setHeaderAttributes(this.windowWidth);
+                this.displayBoxLayout = 'd-none';
+                this.isVerticalLayoutChecked = false;
+                this.isSidebarChecked = true;
+                this.isHeaderChecked = true;
+                this.headerFixedMargin = '56px';
+                this.sidebarFixedHeight = 'calc(100vh - 56px)';
+                this.itemBorderStyle = 'none';
+                this.subItemBorder = true;
+                this.itemBorder = true;
+                this.setMenuAttributes(this.windowWidth);
+                this.setHeaderAttributes(this.windowWidth);
   }
 
   ngOnInit(): void {
@@ -190,7 +194,7 @@ export class PrincipalComponent implements OnInit {
     this.rolUsuario = scopes.RolUsuario;
   }
 
-   onResize(event): void {
+  onResize(event) {
       this.windowWidth = event.target.innerWidth;
       this.setHeaderAttributes(this.windowWidth);
 
@@ -206,7 +210,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
- setHeaderAttributes(windowWidth) {
+  setHeaderAttributes(windowWidth) {
       if (windowWidth < 992) {
           this.navRight = 'nav-off';
       } else {
@@ -230,7 +234,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
-  toggleHeaderNavRight(): void {
+  toggleHeaderNavRight() {
       this.navRight = this.navRight === 'nav-on' ? 'nav-off' : 'nav-on';
       this.chatTopPosition = this.chatTopPosition === 'nav-on' ? '112px' : '';
       if (this.navRight === 'nav-off' && this.innerChatSlideInOut === 'in') {
@@ -241,7 +245,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
-  toggleLiveNotification(): void {
+  toggleLiveNotification() {
       this.liveNotification = this.liveNotification === 'an-off' ? 'an-animate' : 'an-off';
       this.liveNotificationClass = this.liveNotification === 'an-animate' ? 'active' : '';
 
@@ -253,7 +257,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
-  toggleProfileNotification(): void {
+  toggleProfileNotification() {
       this.profileNotification = this.profileNotification === 'an-off' ? 'an-animate' : 'an-off';
       this.profileNotificationClass = this.profileNotification === 'an-animate' ? 'active' : '';
 
@@ -265,7 +269,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
-  notificationOutsideClick(ele: string): void {
+  notificationOutsideClick(ele: string) {
       if (ele === 'live' && this.liveNotification === 'an-animate') {
           this.toggleLiveNotification();
       } else if (ele === 'profile' && this.profileNotification === 'an-animate') {
@@ -273,18 +277,18 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
-  toggleChat(): void {
+  toggleChat() {
       this.chatSlideInOut = this.chatSlideInOut === 'out' ? 'in' : 'out';
       if (this.innerChatSlideInOut === 'in') {
           this.innerChatSlideInOut = 'out';
       }
   }
 
-  toggleInnerChat(): void {
+  toggleInnerChat() {
       this.innerChatSlideInOut = this.innerChatSlideInOut === 'out' ? 'in' : 'out';
   }
 
-  searchOn(): void {
+  searchOn() {
       document.querySelector('#main-search').classList.add('open');
       const searchInterval = setInterval(() => {
           if (this.searchWidth >= 200) {
@@ -296,7 +300,7 @@ export class PrincipalComponent implements OnInit {
       }, 35);
   }
 
-  searchOff(): void {
+  searchOff() {
       const searchInterval = setInterval(() => {
           if (this.searchWidth <= 0) {
               document.querySelector('#main-search').classList.remove('open');
@@ -308,7 +312,7 @@ export class PrincipalComponent implements OnInit {
       }, 35);
   }
 
-  toggleOpened(): void {
+  toggleOpened() {
       if (this.windowWidth < 992) {
           this.toggleOn = this.verticalNavType === 'offcanvas' ? true : this.toggleOn;
           if (this.navRight === 'nav-on') {
@@ -318,18 +322,18 @@ export class PrincipalComponent implements OnInit {
       this.verticalNavType = this.verticalNavType === 'expanded' ? 'offcanvas' : 'expanded';
   }
 
-  onClickedOutsideSidebar(e: Event): void {
+  onClickedOutsideSidebar(e: Event) {
       if ((this.windowWidth < 992 && this.toggleOn && this.verticalNavType !== 'offcanvas') || this.verticalEffect === 'overlay') {
           this.toggleOn = true;
           this.verticalNavType = 'offcanvas';
       }
   }
 
-  toggleRightbar(): void {
+  toggleRightbar() {
       this.configOpenRightBar = this.configOpenRightBar === 'open' ? '' : 'open';
   }
 
-  setNavBarTheme(theme: string): void {
+  setNavBarTheme(theme: string) {
       if (theme === 'themelight1') {
           this.navBarTheme = 'themelight1';
           this.menuTitleTheme = 'theme1';
@@ -341,7 +345,7 @@ export class PrincipalComponent implements OnInit {
       }
   }
 
-  setLayoutType(type: string): void {
+  setLayoutType(type: string) {
       this.layoutType = type;
       if (type === 'dark') {
           this.headerTheme = 'theme1';
@@ -385,4 +389,5 @@ export class PrincipalComponent implements OnInit {
     const result = this.renderService.matchControl(idControl);
     return result;
   }
+
 }

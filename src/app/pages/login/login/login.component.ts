@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
                   this.router.navigate(['/auth/login/roles']);
                 }
               } else {
-                swal('Alerta!', 'Elm usuario no tiene roles habilitados', 'warning');
+                swal.fire('Alerta!', 'Elm usuario no tiene roles habilitados', 'warning');
               }
             }
           );

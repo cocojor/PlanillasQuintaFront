@@ -309,15 +309,13 @@ export class MenuItems {
                 const childrenItemsList = new Array<ChildrenItems>();
                 let counter = 0;
                 hijos.hijos.forEach(_hijos => {
-                    if (_hijos.tipo === 1) {
-                        const childrenItems = new ChildrenItems;
-                        childrenItems.state = _hijos.ruta;
-                        childrenItems.name = _hijos.descripcion;
-                        childrenItems.id = _hijos.idPermiso;
-                        childrenItemsList.push(childrenItems);
-                        mainMenuItems.children = childrenItemsList;
-                        counter++;
-                    }
+                      const childrenItems = new ChildrenItems;
+                      childrenItems.state = _hijos.ruta;
+                      childrenItems.name = _hijos.descripcion;
+                      childrenItems.id = _hijos.idPermiso;
+                      childrenItemsList.push(childrenItems);
+                      mainMenuItems.children = childrenItemsList;
+                      counter++;
                 });
                 mainMenuItems.state = hijos.ruta;
                 mainMenuItems.name = hijos.descripcion;

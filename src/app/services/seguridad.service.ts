@@ -33,13 +33,12 @@ export class SeguridadService {
     return false;
   }
   ObtenerIdPayload() {
-    let payLoad = new PayLoadToken();
-    const datos =  decode(localStorage.getItem('AccesToken'));
-    payLoad = datos;
+    const payLoad = new PayLoadToken();
+    const datos =  decode.default(localStorage.getItem('AccesToken'));
     payLoad.scopes = new Scopes();
     payLoad.scopes.RolUsuario = localStorage.getItem('RolUsuario');
-    payLoad.scopes.IdUsuario = datos.nameid;
-    payLoad.scopes.Usuario = datos.unique_name;
+    payLoad.scopes.IdUsuario = datos['nameid'];
+    payLoad.scopes.Usuario = datos['unique_name'];
     return payLoad;
   }
 
